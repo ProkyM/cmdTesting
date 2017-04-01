@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="stcRun" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="bin/cmdTest.js" working-dir="$PROJECT_DIR$">
+    <envs>
+      <env name="DEBUG" value="cmdTesting:*" />
+      <env name="PATH" value="/home/martin/Sencha/Test/2_0_2_9/stc:/home/martin/Sencha/Test/2_0_1_30/stc:/home/martin/Sencha/Test/2_0_1_27/stc:/home/martin/Sencha/Test/2_0_0_359/stc:/home/martin/bin/Sencha/Cmd:/home/martin/Sencha/Test/2_0_0_328/stc:/home/martin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/martin/node/bin:/home/martin/selenium" />
+    </envs>
+    <method />
+  </configuration>
+</component>

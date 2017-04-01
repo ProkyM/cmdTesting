@@ -4,13 +4,14 @@
 const fs = require('fs');
 
 function configParser (configFilePath){
+    console.log(configFilePath);
     return new Promise((resolve, reject) => {
         fs.readFile(configFilePath,'utf-8', (err,data) => {
             if(err) {
+                console.log('chybicka');
                 reject(err);
             }
             var config = JSON.parse(data);
-
             var commands = [];
             var counter = 0;
 

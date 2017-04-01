@@ -2,26 +2,41 @@
  * Created by Martin on 28.03.2017.
  */
 const fs = require('fs');
-var configParser = require('../configParser')('config.json');
 const spawn = require('child_process').spawn;
+//console.log()
 const path = require('path');
-//let content;
 
-let fwDir = path.normalize('C:\\Users\\Martin\\Downloads\\frameworks');
-let cwDir = path.join(fwDir , '..', 'test');
 
-configParser.then((configs)=> {
+let configPath = path.join(__dirname,'..','config.json');
 
-    var len = configs.length;
-    for(var i = 0; i<len;i++){
-        var cmds = configs[i].split(' ');
-        var cmd = cmds[0];
-        cmds.shift();
-        const cmdSpawn = spawn(cmd, cmds);
-        cmdSpawn.stdout.on('data', (data)=>{
-            console.log('cmd = '+cmds+' data : '+ data);
-        });
+var configParser = require('../configParser')(configPath);
+configParser.then((configs,err)=> {
+    if(err){
+        console.log('err');
     }
+    var len = configs.length;
+    var promises = configs.map(config => {
+        return new Promise(function(resolve, reject) {
+            var cmds = config.split(' ');
+            var cmd = cmds[0];
+            cmds.shift();
+            const cmdSpawn = spawn(cmd, cmds);
+            cmdSpawn.stdout.on('data', (data)=>{
+                console.log('cmd = '+cmds+' data : '+ data);
+            });
+            cmdSpawn.stderr.on('data', data => {
+                console.log('error')
+                reject(data);
+            });
+            cmdSpawn.on('close', code => {
+                resolve(code);
+            })
+        });
+
+    });
+    Promise.all(promises)
+        .then(function() { console.log('all finished'); })
+        .catch(console.error);
 });
 
 /*
@@ -37,5 +52,3 @@ sencha.stdout.on('data', (data)=>{
 sencha.stdout.on('close', (code)=>{
     console.log('exit code : ', code);
 });*/
-
-console.log('here');
