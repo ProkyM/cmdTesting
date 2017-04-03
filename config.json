@@ -11,6 +11,14 @@
                     "command" : "diag"
                 }
             ]
+        },
+        {
+            "command" : "app",
+            "cmds" : [
+                {
+                    "command" : "build"
+                }
+            ]
         }
     ]
 }

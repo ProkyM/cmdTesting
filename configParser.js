@@ -2,9 +2,7 @@
  * Created by Martin on 28.03.2017.
  */
 const fs = require('fs');
-
 function configParser (configFilePath){
-    console.log(configFilePath);
     return new Promise((resolve, reject) => {
         fs.readFile(configFilePath,'utf-8', (err,data) => {
             if(err) {
@@ -14,7 +12,6 @@ function configParser (configFilePath){
             var config = JSON.parse(data);
             var commands = [];
             var counter = 0;
-
             function parseConfig(data,path){
                 path = path || '';
                 if(data.hasOwnProperty('command')){
@@ -31,16 +28,9 @@ function configParser (configFilePath){
                 }
                 return commands;
             }
-            //console.log(config)
             var toRet = parseConfig(config);
-
             resolve(toRet);
-
         });
     });
-
-
 }
-
-
 module.exports = configParser;
