@@ -1,24 +1,251 @@
 {
-    "command" : "sencha",
-    "cmds": [
+  "command": "sencha",
+  "cmds": [
+    {
+      "command": "-sdk /home/martin/extJS65",
+      "cmds": [
         {
-            "command" : "help",
-            "cmds" : [
+          "command": "generate",
+          "cmds": [
+            {
+              "command": "app",
+              "cmds": [
                 {
-                    "command" : "app"
+                  "command": "myAppModern",
+                  "cmds": [
+                    {
+                      "command": "/home/martin/apps/myModernApp --modern"
+                    }
+                  ]
                 },
                 {
-                    "command" : "diag"
+                  "command": "myAppClassic",
+                  "cmds": [
+                    {
+                      "command": "/home/martin/apps/myClassicApp --classic"
+                    }
+                  ]
+                },
+                {
+                  "command": "myAppClassic",
+                  "cmds": [
+                    {
+                      "command": "/home/martin/apps/myUniversalApp"
+                    }
+                  ]
                 }
-            ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "command": "-cwd /home/martin/apps/myClassicApp",
+      "cmds": [
+        {
+          "command": "app",
+          "cmds": [
+            {
+              "command": "build"
+            },
+            {
+              "command": "build",
+              "cmds": [
+                {
+                  "command": "production"
+                },
+                {
+                  "command": "development"
+                },
+                {
+                  "command": "testing"
+                }
+              ]
+            }
+          ]
         },
         {
-            "command" : "app",
-            "cmds" : [
+          "command": "generate",
+          "cmds": [
+            {
+              "command": "view",
+              "cmds": [
                 {
-                    "command" : "build"
+                  "command": "test.viewName"
+                },
+                {
+                  "command": "viewName2"
+                },
+                {
+                  "command": "-base Ext.tab.Panel foo.Thing"
                 }
-            ]
+              ]
+            },
+            {
+              "command": "model",
+              "cmds": [
+                {
+                  "command": "User id:int,name,email"
+                },
+                {
+                  "command": "Person id:int,name,email"
+                }
+              ]
+            },
+            {
+              "command": "controller",
+              "cmds": [
+                {
+                  "command": "my.MyController"
+                },
+                {
+                  "command": "MyController"
+                }
+              ]
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "command": "-cwd /home/martin/apps/myModernApp",
+      "cmds": [
+        {
+          "command": "app",
+          "cmds": [
+            {
+              "command": "build"
+            },
+            {
+              "command": "build",
+              "cmds": [
+                {
+                  "command": "production"
+                },
+                {
+                  "command": "development"
+                },
+                {
+                  "command": "testing"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "command": "generate",
+          "cmds": [
+            {
+              "command": "view",
+              "cmds": [
+                {
+                  "command": "test.viewName"
+                },
+                {
+                  "command": "viewName2"
+                },
+                {
+                  "command": "-base Ext.tab.Panel foo.Thing"
+                }
+              ]
+            },
+            {
+              "command": "model",
+              "cmds": [
+                {
+                  "command": "User id:int,name,email"
+                },
+                {
+                  "command": "Person id:int,name,email"
+                }
+              ]
+            },
+            {
+              "command": "controller",
+              "cmds": [
+                {
+                  "command": "my.MyController"
+                },
+                {
+                  "command": "MyController"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "command": "-cwd /home/martin/apps/myUniversalApp",
+      "cmds": [
+        {
+          "command": "app",
+          "cmds": [
+            {
+              "command": "build"
+            },
+            {
+              "command": "build",
+              "cmds": [
+                {
+                  "command": "production"
+                },
+                {
+                  "command": "development"
+                },
+                {
+                  "command": "testing"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "command": "generate",
+          "cmds": [
+            {
+              "command": "view",
+              "cmds": [
+                {
+                  "command": "test.viewName"
+                },
+                {
+                  "command": "viewName2"
+                },
+                {
+                  "command": "MyClassicView --classic"
+                },
+                {
+                  "command": "MyModernView --modern"
+                }
+              ]
+            },
+            {
+              "command": "model",
+              "cmds": [
+                {
+                  "command": "User id:int,name,email"
+                },
+                {
+                  "command": "Person id:int,name,email"
+                }
+              ]
+            },
+            {
+              "command": "controller",
+              "cmds": [
+                {
+                  "command": "my.MyController"
+                },
+                {
+                  "command": "MyController"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

@@ -6,6 +6,8 @@ const spawn = require('child_process').spawn;
 //console.log()
 const path = require('path');
 let configPath = path.join(__dirname,'..','config.json');
+let totalErrorsCount = 0;
+let totalWarningsCount = 0;
 
 const configParser = require('../configParser')(configPath);
 configParser.then((configs,err)=> {
@@ -19,13 +21,19 @@ configParser.then((configs,err)=> {
                 var cmd = cmds.shift();
                 const cmdSpawn = spawn(cmd, cmds);
                 let command = cmdSpawn.spawnargs.join(' ');
+                let warnings = [], errors = [];
                 console.log('running command : ', command);
                 const logData = (data)=> {
                     if (data.indexOf('[ERR]') >= 0) {
-                        console.log('Error when running cmd :', command, '\nError = ', data.toString());
+                        errors.push({ cmd: command, msg :data.toString()});
+                        //console.log('Error when running cmd :', command, '\nError = ', data.toString());
                         //cmdSpawn.stdout.removeListener('data', logData);
                         cmdSpawn.kill();
                         return resolve();
+                    }
+                    if (data.indexOf('[WRN]') >= 0) {
+                        warnings.push({ cmd: command, msg :data.toString()});
+                        //console.log('Warning when running cmd :', command, '\nWarning = ', data.toString());
                     }
                 };
                 cmdSpawn.stdout.on('data', logData);
@@ -34,6 +42,10 @@ configParser.then((configs,err)=> {
                     return reject(data);
                 });
                 cmdSpawn.on('close', code => {
+                    totalWarningsCount += warnings.length;
+                    totalErrorsCount += errors.length;
+                    console.log('Warnings count = ' + warnings.length);
+                    console.log('Errors count = ' + errors.length);
                     return resolve(code);
                 })
             });
@@ -55,6 +67,9 @@ configParser.then((configs,err)=> {
 
     res.then(function (done,err) {
         console.log('all tests done');
+        console.log('Total errors = ' + totalErrorsCount);
+        console.log('Total warnings = ' + totalWarningsCount);
+
     }, console.error);
 
 });
