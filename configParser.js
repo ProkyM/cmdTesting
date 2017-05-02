@@ -2,14 +2,15 @@
  * Created by Martin on 28.03.2017.
  */
 const fs = require('fs');
+const decomment = require('decomment');
 function configParser (configFilePath){
     return new Promise((resolve, reject) => {
         fs.readFile(configFilePath,'utf-8', (err,data) => {
             if(err) {
-                console.log('chybicka');
+                console.log('error');
                 reject(err);
             }
-            var config = JSON.parse(data);
+            var config = JSON.parse(decomment(data));
             var commands = [];
             var counter = 0;
             function parseConfig(data,path){

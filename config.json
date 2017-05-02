@@ -1,12 +1,22 @@
 {
+  /**
+  * Tree structure is used to make it easier to create large number of repetive commands
+  * @property command - describes command that will be executed
+  * @property cmds - defines consecutive commands to be executed
+  * {CWD} will be replaced by your current working directory
+  * {SDK} will be replaced with path to SDK
+  */
   "command": "sencha",
   "cmds": [
     {
-      "command": "-sdk /home/martin/extJS65",
+      "command": "-sdk {SDK}",
       "cmds": [
         {
           "command": "generate",
           "cmds": [
+            /**
+            * Generate Modern, Classic and Universal app
+            */
             {
               "command": "app",
               "cmds": [
@@ -14,7 +24,7 @@
                   "command": "myAppModern",
                   "cmds": [
                     {
-                      "command": "/home/martin/apps/myModernApp --modern"
+                      "command": "{CWD}myModernApp --modern"
                     }
                   ]
                 },
@@ -22,7 +32,7 @@
                   "command": "myAppClassic",
                   "cmds": [
                     {
-                      "command": "/home/martin/apps/myClassicApp --classic"
+                      "command": "{CWD}myClassicApp --classic"
                     }
                   ]
                 },
@@ -30,7 +40,48 @@
                   "command": "myAppClassic",
                   "cmds": [
                     {
-                      "command": "/home/martin/apps/myUniversalApp"
+                      "command": "{CWD}myUniversalApp"
+                    }
+                  ]
+                }
+              ]
+            },
+            /**
+            * Generate workspace
+            */
+            {
+              "command": "workspace",
+              "cmds" : [{
+                "command" : "{CWD}myWorkspace"
+              }]
+            },
+            /**
+            * Generate apps in workspace
+            */
+            {
+              "command": "app",
+              "cmds": [
+                {
+                  "command": "myAppModern",
+                  "cmds": [
+                    {
+                      "command": "{CWD}myWorkspace/myModernApp --modern"
+                    }
+                  ]
+                },
+                {
+                  "command": "myAppClassic",
+                  "cmds": [
+                    {
+                      "command": "{CWD}myWorkspace/myClassicApp --classic"
+                    }
+                  ]
+                },
+                {
+                  "command": "myAppClassic",
+                  "cmds": [
+                    {
+                      "command": "{CWD}myWorkspace/myUniversalApp"
                     }
                   ]
                 }
@@ -40,8 +91,11 @@
         }
       ]
     },
+    /**
+    * Build Modern, Classic and Universal apps
+    */
     {
-      "command": "-cwd /home/martin/apps/myClassicApp",
+      "command": "-cwd {CWD}myClassicApp",
       "cmds": [
         {
           "command": "app",
@@ -109,7 +163,7 @@
       ]
     },
     {
-      "command": "-cwd /home/martin/apps/myModernApp",
+      "command": "-cwd {CWD}myModernApp",
       "cmds": [
         {
           "command": "app",
@@ -177,7 +231,7 @@
       ]
     },
     {
-      "command": "-cwd /home/martin/apps/myUniversalApp",
+      "command": "-cwd {CWD}myUniversalApp",
       "cmds": [
         {
           "command": "app",

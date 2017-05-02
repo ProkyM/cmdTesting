@@ -3,11 +3,16 @@
  */
 const fs = require('fs');
 const spawn = require('child_process').spawn;
-//console.log()
 const path = require('path');
 let configPath = path.join(__dirname,'..','config.json');
 let totalErrorsCount = 0;
 let totalWarningsCount = 0;
+
+/*--------SET SDK path and working directory path here ----------------
+* Both dirs should exist
+* */
+let SDKPath = '/home/martin/extJS65/';
+let workingDirectoryPath = '/home/martin/apps/';
 
 const configParser = require('../configParser')(configPath);
 configParser.then((configs,err)=> {
@@ -19,6 +24,11 @@ configParser.then((configs,err)=> {
             return new Promise(function (resolve, reject) {
                 var cmds = config.split(' ');
                 var cmd = cmds.shift();
+                for(var i=0,n=cmds.length;i<n;i++){
+                    cmds[i] = cmds[i].replace('{SDK}',SDKPath);
+                    cmds[i] = cmds[i].replace('{CWD}', workingDirectoryPath);
+                }
+
                 const cmdSpawn = spawn(cmd, cmds);
                 let command = cmdSpawn.spawnargs.join(' ');
                 let warnings = [], errors = [];
