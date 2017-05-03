@@ -11,8 +11,8 @@ let totalWarningsCount = 0;
 /*--------SET SDK path and working directory path here ----------------
 * Both dirs should exist
 * */
-let SDKPath = '/home/martin/extJS65/';
-let workingDirectoryPath = '/home/martin/apps/';
+let SDKPath = process.env.npm_config_SDKPath || '/home/martin/extJS65/';
+let workingDirectoryPath = process.env.npm_config_CWDPath ||'/home/martin/apps/';
 
 const configParser = require('../configParser')(configPath);
 configParser.then((configs,err)=> {
