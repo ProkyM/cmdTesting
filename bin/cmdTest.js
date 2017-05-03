@@ -11,6 +11,7 @@ let totalWarningsCount = 0;
 /*--------SET SDK path and working directory path here ----------------
 * Both dirs should exist
 * */
+console.log(process.env);
 let SDKPath = process.env.npm_config_SDKPath || '/home/martin/extJS65/';
 let workingDirectoryPath = process.env.npm_config_CWDPath ||'/home/martin/apps/';
 
