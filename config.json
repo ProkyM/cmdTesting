@@ -6,7 +6,7 @@
   * {CWD} will be replaced by your current working directory
   * {SDK} will be replaced with path to SDK
   */
-  "command": "/home/teamcity/bin/Sencha/Cmd/6.5.0.176/sencha",
+  "command": "/home/teamcity/bin/Sencha/Cmd/sencha",
   "cmds": [
     {
       "command": "-sdk {SDK}",
